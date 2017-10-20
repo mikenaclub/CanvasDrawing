@@ -18,10 +18,17 @@ class Home extends React.Component{
             x : "black",
             y : 2,
             w :"",
-            h :""
+            h :"",
+            image : new Image()
         }
     }
-
+    componentWillMount(){
+        this.state.socket.on("updateImg",function(imgbase64){
+            console.log("update")
+            this.state.image.src = imgbase64
+            this.state.ctx.drawImage(this.state.image,0,0)
+        }.bind(this))
+    }
     //https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
     componentDidMount() {
         this.setState({
@@ -45,6 +52,7 @@ class Home extends React.Component{
         this.refs.canvas.addEventListener("mouseout", function (e) {
             this.findxy('out', e)
         }.bind(this), false);
+
     }
 
     sentMessageToServ = () => {
@@ -149,14 +157,21 @@ class Home extends React.Component{
         this.state.ctx.lineWidth = this.state.y;
         this.state.ctx.stroke();
         this.state.ctx.closePath();
+        this.postBase64ToServer();
     }
-
+    postBase64ToServer = () =>{
+        let time = 1000;
+        setTimeout(function () {
+            this.state.socket.emit("userDrawing",this.state.canvas.toDataURL())
+        }.bind(this),time);
+    }
     getImgData = () =>{
         console.log(this.state.canvas.toDataURL())
     }
 
     clearImg = () =>{
         this.state.ctx.clearRect(0,0,this.state.w,this.state.h)
+        this.state.socket.emit("userDrawing",this.state.canvas.toDataURL());
     }
 
     render(){
