@@ -1,0 +1,58 @@
+#app-detail{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+#canvas{
+    background: white;
+    height: 50vh;
+    width: 100%;
+}
+#selectColor{
+    margin-right: 20px;
+}
+#green{
+    margin-right: 2px;
+    width:10px;height:10px;background:green;
+}
+#blue{
+    margin-right: 2px;
+    width:10px;height:10px;background:blue;
+}
+#red{
+    margin-right: 2px;
+    width:10px;height:10px;background:red;
+}
+#yellow{
+    margin-right: 2px;
+    width:10px;height:10px;background:yellow;
+}
+#orange{
+    margin-right: 2px;
+    width:10px;height:10px;background:orange;
+}
+#black{
+    margin-right: 2px;
+    width:10px;height:10px;background:black;
+}
+#eraser{
+    margin-right: 20px;
+}
+#white{
+    margin-right: 2px;
+    top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;
+}
+#canvas{
+    top:10%;left:10%;border:2px solid;
+}
+#tools{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+#color-tools{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
